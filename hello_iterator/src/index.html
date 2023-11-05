@@ -1,0 +1,46 @@
+<style>
+	#box {
+		width: 0px;
+		height: 50px;
+		background-color: blue;
+	}
+</style>
+
+<body>
+	<h1>requestAnimationFrame API</h1>
+	<button id='begin' class="begin">开始</button>
+	<button id='end' class="end">停止</button>
+	<div id='box'></div>
+</body>
+
+
+<script>
+	(() => {
+		const beginBtn = document.querySelector("#begin")
+		const endBtn = document.querySelector("#end")
+		const box = document.querySelector("#box")
+		let myRef;
+		let timer;
+
+		beginBtn.addEventListener("click", () => {
+			// myRef = requestAnimationFrame(test)
+			timer = setInterval(() => {
+				test()
+			}, 1000)
+
+		})
+
+		endBtn.addEventListener("click", () => {
+			cancelAnimationFrame(myRef)
+			clearInterval(timer)
+		})
+
+		function test() {
+			box.style.width = `${myRef}%`
+			myRef = requestAnimationFrame(test)
+		}
+	})()
+
+
+
+</script>
